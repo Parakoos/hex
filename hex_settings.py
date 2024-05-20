@@ -1,9 +1,9 @@
 import board
-import adafruit_fancyled.adafruit_fancyled as fancy
+import adafruit_fancyled.adafruit_fancyled as fancy # type: ignore
 import digitalio
 import busio
-import adafruit_74hc595
-from easing import CubicEaseOut
+import adafruit_74hc595 # type: ignore
+from easing import CubicEaseOut, SineEaseInOut
 
 P1_COLOR = fancy.CRGB(255, 0, 0)
 P2_COLOR = fancy.CRGB(0, 0, 255)
@@ -12,9 +12,21 @@ P4_COLOR = fancy.CRGB(255, 255, 0)
 P5_COLOR = fancy.CRGB(0, 255, 255)
 P6_COLOR = fancy.CRGB(255, 0, 255)
 
+LONG_PRESS_THRESHOLD_MS = 3000
+SHORT_PRESS_THRESHOLD_MS = 1000
+
+# Time Blink Settings
+TIME_REMINDER_EVERY_X_SECONDS = 10
+TIME_REMINDER_BLINK_DURATION_SECONDS = 0.8
+TIME_REMINDER_BLINK_DURATION_EASING = SineEaseInOut(1, 0, TIME_REMINDER_BLINK_DURATION_SECONDS)
+
 #############################################
 ############ For the Hex Table ##############
 #############################################
+
+# Rainbow Settings
+RAINBOW_PIXELS_LENGTH = 120
+RAINBOW_SPEED = 0.05
 
 # Setup Button LEDs Shift Register
 latch_pin = digitalio.DigitalInOut(board.IO44)
@@ -49,12 +61,16 @@ SEAT_CONFIG = [
 ############ For the Circuit Playground ##############
 ######################################################
 
+# # Rainbow Settings
+# RAINBOW_PIXELS_LENGTH = 6
+# RAINBOW_SPEED = 1
+
 # # Brightness Settings
-# BRIGHTNESS_BRIGHT = 0.8
+# BRIGHTNESS_BRIGHT = 0.5
 # BRIGHTNESS_DIM = 0.1
 
 # # Fade Transition
-# TRANSITION_SECONDS = 3
+# TRANSITION_SECONDS = 1
 # TRANSITION_EASING = CubicEaseOut(0, 1, TRANSITION_SECONDS)
 
 # # Different board have different values for when a button is pressed
